@@ -1,0 +1,3 @@
+node_modules
+mongodb_uri.json
+webpack.config.js
