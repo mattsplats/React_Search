@@ -7,7 +7,6 @@ const express    = require('express'),
       logger     = require('morgan'),
       mongoose   = require('mongoose'),
       Promise    = require('bluebird'),
-      rp         = require('request-promise'),
 
       // Local dependencies
       Article    = require('./models/Article.js'),

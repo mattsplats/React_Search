@@ -18,14 +18,15 @@
   },
   "homepage": "https://github.com/mattsplats/cheerio_mongo#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.7.2",
     "morgan": "^1.7.0",
-    "request": "^2.79.0",
-    "request-promise": "^4.1.1"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",

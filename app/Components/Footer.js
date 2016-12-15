@@ -1,7 +1,7 @@
 import React from 'react'
 
 module.exports = React.createClass({
-  render: function () {
+  render() {
     return (
       <footer className="page-footer orange">
         <div className="container">

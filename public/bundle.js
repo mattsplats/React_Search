@@ -58,7 +58,19 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(179);
+	var _Search = __webpack_require__(179);
+
+	var _Search2 = _interopRequireDefault(_Search);
+
+	var _Results = __webpack_require__(180);
+
+	var _Results2 = _interopRequireDefault(_Results);
+
+	var _Saved = __webpack_require__(182);
+
+	var _Saved2 = _interopRequireDefault(_Saved);
+
+	var _Footer = __webpack_require__(184);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -69,6 +81,9 @@
 	  'div',
 	  { className: 'main-container' },
 	  _react2.default.createElement(_Header2.default, null),
+	  _react2.default.createElement(_Search2.default, null),
+	  _react2.default.createElement(_Results2.default, null),
+	  _react2.default.createElement(_Saved2.default, null),
 	  _react2.default.createElement(_Footer2.default, null)
 	), document.getElementById('app'));
 
@@ -21535,7 +21550,6 @@
 
 	module.exports = _react2.default.createClass({
 	  displayName: "exports",
-
 	  render: function render() {
 	    return _react2.default.createElement(
 	      "nav",
@@ -21592,6 +21606,155 @@
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createClass({
+	  displayName: 'exports',
+	  getInitialState: function getInitialState() {
+	    return { search_term: '' };
+	  },
+	  handleChange: function handleChange(event) {
+	    var newState = {};
+	    newState[event.target.id] = event.target.value;
+	    this.setState(newState);
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'orange' },
+	        _react2.default.createElement(
+	          'h2',
+	          { className: 'header center white-text' },
+	          'Search'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'col s12' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'input-field' },
+	            _react2.default.createElement('input', {
+	              type: 'text',
+	              value: this.state.search_term,
+	              id: 'search_term',
+	              className: 'validate',
+	              onChange: this.handleChange,
+	              required: true
+	            }),
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'search_term' },
+	              'Search Term'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'input-field' },
+	            _react2.default.createElement('input', { id: 'start_year', type: 'number', className: 'validate' }),
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'start_year' },
+	              'Start Year'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'input-field' },
+	            _react2.default.createElement('input', { id: 'end_year', type: 'number', className: 'validate' }),
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'end_year' },
+	              'End Year'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'input-field center-align' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn waves-effect waves-light', type: 'submit', name: 'action' },
+	              'Submit ',
+	              _react2.default.createElement(
+	                'i',
+	                { className: 'material-icons right' },
+	                'send'
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _FoundArticle = __webpack_require__(181);
+
+	var _FoundArticle2 = _interopRequireDefault(_FoundArticle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createClass({
+	  displayName: 'exports',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'section' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'orange' },
+	          _react2.default.createElement(
+	            'h2',
+	            { className: 'header center white-text' },
+	            'Results'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col s12' },
+	            _react2.default.createElement(_FoundArticle2.default, null),
+	            _react2.default.createElement(_FoundArticle2.default, null),
+	            _react2.default.createElement(_FoundArticle2.default, null),
+	            _react2.default.createElement('div', { className: 'divider' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	var _react = __webpack_require__(1);
@@ -21602,7 +21765,147 @@
 
 	module.exports = _react2.default.createClass({
 	  displayName: "exports",
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      null,
+	      _react2.default.createElement("div", { className: "divider" }),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "section" },
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "h5",
+	            null,
+	            "Test",
+	            _react2.default.createElement(
+	              "div",
+	              { className: "right" },
+	              _react2.default.createElement(
+	                "a",
+	                { className: "waves-effect waves-light btn" },
+	                "Save"
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
 
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SavedArticle = __webpack_require__(183);
+
+	var _SavedArticle2 = _interopRequireDefault(_SavedArticle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createClass({
+	  displayName: 'exports',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'section' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'orange' },
+	          _react2.default.createElement(
+	            'h2',
+	            { className: 'header center white-text' },
+	            'Saved Articles'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col s12' },
+	            _react2.default.createElement(_SavedArticle2.default, null),
+	            _react2.default.createElement(_SavedArticle2.default, null),
+	            _react2.default.createElement(_SavedArticle2.default, null),
+	            _react2.default.createElement('div', { className: 'divider' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createClass({
+	  displayName: "exports",
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      null,
+	      _react2.default.createElement("div", { className: "divider" }),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "section" },
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "h5",
+	            null,
+	            "Test",
+	            _react2.default.createElement(
+	              "div",
+	              { className: "right" },
+	              _react2.default.createElement(
+	                "a",
+	                { className: "waves-effect waves-light btn" },
+	                "Delete"
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createClass({
+	  displayName: "exports",
 	  render: function render() {
 	    return _react2.default.createElement(
 	      "footer",
