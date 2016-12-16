@@ -6,12 +6,16 @@ import axios from 'axios'
 module.exports = React.createClass({
   handleClick() {
     const article = this.props.article;
-    
+
     axios.post('/api/saved', {
       title: article.headline.main,
       date: article.pub_date,
       url: article.web_url
-    }).then(response => this.props.setSaved(response) );
+    }).then(() => {
+      this.props.setSaved();
+      this.props.onDelete(this.props.index);
+    }
+   );
   },
   
   render() {
@@ -22,7 +26,7 @@ module.exports = React.createClass({
           <div className="valign-wrapper">
             <div className="col s10">
               <h6 className="valign">
-                <a href={this.props.article.web_url}>{this.props.article.headline.main}</a>
+                <a href={this.props.article.web_url} target="_blank">{this.props.article.headline.main}</a>
               </h6>
             </div>
             <div className="col s2">

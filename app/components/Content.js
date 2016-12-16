@@ -1,10 +1,11 @@
 'use strict';
 
-import React    from 'react'
+import React   from 'react'
+import axios   from 'axios'
 
-import Search   from './Search'
-import Results  from './Results'
-import Saved    from './Saved'
+import Search  from './Search'
+import Results from './Results'
+import Saved   from './Saved'
 
 module.exports = React.createClass({
   getInitialState() {
@@ -12,29 +13,36 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-
+    this.setSaved();
   },
 
   componentDidUpdate() {
 
   },
 
-  setResults(response) {
-    this.setState({ results: response.slice(0,5) });
+  setResults(data) {
+    this.setState({ results: data.slice(0,5) });
   },
 
-  setSaved(response) {
-    const newSaved = this.state.saved;
-    newSaved.push(response.data);
-    this.setState(newSaved);
+  setSaved(index) {
+    axios.get('/api/saved').then(response => 
+      this.setState({ saved: response.data })
+    )
+
+    // if (index) {
+    //   console.log(index)
+    //   const results = this.state.results;
+    //   results.splice(index, 1);
+    //   this.setState({ results: results })
+    // }
   },
 
   render() {
     return (
       <div>
-        <Search setResults={this.setResults} />
+        <Search  setResults={this.setResults} />
         <Results setSaved={this.setSaved} articles={this.state.results} />
-        <Saved articles={this.state.saved} />
+        <Saved   setSaved={this.setSaved} articles={this.state.saved} />
       </div>
     )
   }

@@ -21602,6 +21602,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _axios = __webpack_require__(182);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _Search = __webpack_require__(181);
 
 	var _Search2 = _interopRequireDefault(_Search);
@@ -21621,15 +21625,26 @@
 	  getInitialState: function getInitialState() {
 	    return { results: [], saved: [] };
 	  },
-	  componentDidMount: function componentDidMount() {},
-	  componentDidUpdate: function componentDidUpdate() {},
-	  setResults: function setResults(response) {
-	    this.setState({ results: response.slice(0, 5) });
+	  componentDidMount: function componentDidMount() {
+	    this.setSaved();
 	  },
-	  setSaved: function setSaved(response) {
-	    var newSaved = this.state.saved;
-	    newSaved.push(response.data);
-	    this.setState(newSaved);
+	  componentDidUpdate: function componentDidUpdate() {},
+	  setResults: function setResults(data) {
+	    this.setState({ results: data.slice(0, 5) });
+	  },
+	  setSaved: function setSaved(index) {
+	    var _this = this;
+
+	    _axios2.default.get('/api/saved').then(function (response) {
+	      return _this.setState({ saved: response.data });
+	    });
+
+	    // if (index) {
+	    //   console.log(index)
+	    //   const results = this.state.results;
+	    //   results.splice(index, 1);
+	    //   this.setState({ results: results })
+	    // }
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -21637,7 +21652,7 @@
 	      null,
 	      _react2.default.createElement(_Search2.default, { setResults: this.setResults }),
 	      _react2.default.createElement(_Results2.default, { setSaved: this.setSaved, articles: this.state.results }),
-	      _react2.default.createElement(_Saved2.default, { articles: this.state.saved })
+	      _react2.default.createElement(_Saved2.default, { setSaved: this.setSaved, articles: this.state.saved })
 	    );
 	  }
 	});
@@ -21819,7 +21834,7 @@
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
 	  getInitialState: function getInitialState() {
-	    return { search_term: '' };
+	    return { search_term: '', begin_date: '', end_date: '' };
 	  },
 	  handleChange: function handleChange(event) {
 	    this.setState(_defineProperty({}, event.target.id, event.target.value));
@@ -21829,14 +21844,19 @@
 
 	    event.preventDefault();
 
-	    _axios2.default.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
+	    var query = {
 	      params: {
-	        api_key: '',
+	        api_key: '611c17e5bafd43e280f1618d70703548',
 	        q: this.state.search_term
 	      }
-	    }).then(function (response) {
+	    };
+
+	    if (this.state.begin_date) query.params.begin_date = this.state.begin_date + '0101';
+	    if (this.state.end_date) query.params.end_date = this.state.end_date + '1231';
+
+	    _axios2.default.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', query).then(function (response) {
 	      _this.props.setResults(response.data.response.docs);
-	      _this.setState({ search_term: '' });
+	      _this.setState({ search_term: '', begin_date: undefined, end_date: undefined });
 	    });
 	  },
 	  render: function render() {
@@ -21874,7 +21894,13 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'input-field' },
-	            _react2.default.createElement('input', { id: 'start_year', type: 'number', className: 'validate' }),
+	            _react2.default.createElement('input', {
+	              type: 'number',
+	              value: this.state.begin_date || '',
+	              id: 'begin_date',
+	              className: 'validate',
+	              onChange: this.handleChange
+	            }),
 	            _react2.default.createElement(
 	              'label',
 	              { htmlFor: 'start_year' },
@@ -21884,7 +21910,13 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'input-field' },
-	            _react2.default.createElement('input', { id: 'end_year', type: 'number', className: 'validate' }),
+	            _react2.default.createElement('input', {
+	              type: 'number',
+	              value: this.state.end_date || '',
+	              id: 'end_date',
+	              className: 'validate',
+	              onChange: this.handleChange
+	            }),
 	            _react2.default.createElement(
 	              'label',
 	              { htmlFor: 'end_year' },
@@ -23355,6 +23387,12 @@
 
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
+	  getInitialState: function getInitialState() {
+	    return { deleted: '[]' };
+	  },
+	  onDelete: function onDelete(index) {
+	    this.setState({ deleted: this.state.deleted.concat([index]) });
+	  },
 	  render: function render() {
 	    var _this = this;
 
@@ -23375,8 +23413,15 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col s12' },
-	            this.props.articles.map(function (article) {
-	              return _react2.default.createElement(_FoundArticle2.default, { key: article.web_url, article: article, setSaved: _this.props.setSaved });
+	            this.props.articles.map(function (article, i) {
+	              return _this.state.deleted.indexOf(i) === -1 ? // If the article index is not in the deleted array
+	              _react2.default.createElement(_FoundArticle2.default, {
+	                key: i,
+	                index: i,
+	                article: article,
+	                setSaved: _this.props.setSaved,
+	                onDelete: _this.onDelete
+	              }) : '';
 	            }),
 	            _react2.default.createElement('div', { className: 'divider' })
 	          )
@@ -23413,8 +23458,9 @@
 	      title: article.headline.main,
 	      date: article.pub_date,
 	      url: article.web_url
-	    }).then(function (response) {
-	      return _this.props.setSaved(response);
+	    }).then(function () {
+	      _this.props.setSaved();
+	      _this.props.onDelete(_this.props.index);
 	    });
 	  },
 	  render: function render() {
@@ -23436,7 +23482,7 @@
 	              { className: 'valign' },
 	              _react2.default.createElement(
 	                'a',
-	                { href: this.props.article.web_url },
+	                { href: this.props.article.web_url, target: '_blank' },
 	                this.props.article.headline.main
 	              )
 	            )
@@ -23479,6 +23525,8 @@
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
 	  render: function render() {
+	    var _this = this;
+
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'container' },
@@ -23497,7 +23545,7 @@
 	            'div',
 	            { className: 'col s12' },
 	            this.props.articles.map(function (article) {
-	              return _react2.default.createElement(_SavedArticle2.default, { key: article._id, article: article });
+	              return _react2.default.createElement(_SavedArticle2.default, { key: article._id, article: article, setSaved: _this.props.setSaved });
 	            }),
 	            _react2.default.createElement('div', { className: 'divider' })
 	          )
@@ -23517,11 +23565,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _axios = __webpack_require__(182);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
-	  handleClick: function handleClick() {},
+	  handleClick: function handleClick() {
+	    var _this = this;
+
+	    _axios2.default.delete('/api/saved/' + this.props.article._id).then(function () {
+	      return _this.props.setSaved();
+	    });
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -23541,7 +23599,7 @@
 	              { className: 'valign' },
 	              _react2.default.createElement(
 	                'a',
-	                { href: this.props.article.url },
+	                { href: this.props.article.url, target: '_blank' },
 	                this.props.article.title
 	              )
 	            )

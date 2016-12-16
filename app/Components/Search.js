@@ -5,7 +5,7 @@ import axios from 'axios'
 
 module.exports = React.createClass({
   getInitialState() {
-    return { search_term: '' }
+    return { search_term: '', begin_date: '', end_date: '' }
   },
 
   handleChange(event) {
@@ -14,15 +14,20 @@ module.exports = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    
-    axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
+
+    const query = {
       params: {
-        api_key: '',
+        api_key: '611c17e5bafd43e280f1618d70703548',
         q: this.state.search_term
       }
-    }).then(response => {
+    }
+
+    if (this.state.begin_date) query.params.begin_date = `${this.state.begin_date}0101`;
+    if (this.state.end_date)   query.params.end_date   = `${this.state.end_date}1231`;
+
+    axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', query).then(response => {
       this.props.setResults(response.data.response.docs);
-      this.setState({ search_term: '' });
+      this.setState({ search_term: '', begin_date: undefined, end_date: undefined });
     })
   },
 
@@ -46,12 +51,24 @@ module.exports = React.createClass({
             </div>
 
             <div className="input-field">
-              <input id="start_year" type="number" className="validate" />
+              <input
+                type="number"
+                value={this.state.begin_date || ''}
+                id="begin_date"
+                className="validate"
+                onChange={this.handleChange}
+              />
               <label htmlFor="start_year">Start Year</label>
             </div>
 
             <div className="input-field">
-              <input id="end_year" type="number" className="validate" />
+              <input
+                type="number"
+                value={this.state.end_date || ''}
+                id="end_date"
+                className="validate"
+                onChange={this.handleChange}
+              />
               <label htmlFor="end_year">End Year</label>
             </div>
 

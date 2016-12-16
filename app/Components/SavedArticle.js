@@ -1,10 +1,11 @@
 'use strict';
 
 import React from 'react'
+import axios from 'axios'
 
 module.exports = React.createClass({
   handleClick() {
-    
+    axios.delete(`/api/saved/${this.props.article._id}`).then(() => this.props.setSaved());
   },
   
   render() {
@@ -15,7 +16,7 @@ module.exports = React.createClass({
           <div className="valign-wrapper">
             <div className="col s10">
               <h6 className="valign">
-                <a href={this.props.article.url}>{this.props.article.title}</a>
+                <a href={this.props.article.url} target="_blank">{this.props.article.title}</a>
               </h6>
             </div>
             <div className="col s2">

@@ -66,8 +66,8 @@ app.post('/api/saved', (req, res) =>
   )
 );
 
-app.delete('/api/saved', (req, res) =>
-  Article.findByIdAndRemove(req.body.id).then(data => 
+app.delete('/api/saved/:id', (req, res) =>
+  Article.findByIdAndRemove(req.params.id).then(data => 
     res.json(data)
   )
 );
