@@ -1,3 +1,4 @@
 node_modules
 mongodb_uri.json
+nyt_api_key.json
 webpack.config.js

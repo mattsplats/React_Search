@@ -6,7 +6,7 @@ import FoundArticle from './FoundArticle'
 
 module.exports = React.createClass({
   getInitialState() {
-    return { deleted: '[]' }
+    return { articles: [], deleted: [] }
   },
 
   onDelete(index) {
@@ -14,6 +14,12 @@ module.exports = React.createClass({
   },
 
   render() {
+    // Reset deleted to empty array on new search
+    if (this.state.articles !== this.props.articles) {
+      this.state.articles = this.props.articles;
+      this.state.deleted = [];
+    }
+
     return (
       <div className="container">
         <div className="section">

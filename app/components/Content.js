@@ -16,10 +16,6 @@ module.exports = React.createClass({
     this.setSaved();
   },
 
-  componentDidUpdate() {
-
-  },
-
   setResults(data) {
     this.setState({ results: data.slice(0,5) });
   },
@@ -28,13 +24,6 @@ module.exports = React.createClass({
     axios.get('/api/saved').then(response => 
       this.setState({ saved: response.data })
     )
-
-    // if (index) {
-    //   console.log(index)
-    //   const results = this.state.results;
-    //   results.splice(index, 1);
-    //   this.setState({ results: results })
-    // }
   },
 
   render() {

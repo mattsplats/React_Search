@@ -21628,7 +21628,6 @@
 	  componentDidMount: function componentDidMount() {
 	    this.setSaved();
 	  },
-	  componentDidUpdate: function componentDidUpdate() {},
 	  setResults: function setResults(data) {
 	    this.setState({ results: data.slice(0, 5) });
 	  },
@@ -21638,13 +21637,6 @@
 	    _axios2.default.get('/api/saved').then(function (response) {
 	      return _this.setState({ saved: response.data });
 	    });
-
-	    // if (index) {
-	    //   console.log(index)
-	    //   const results = this.state.results;
-	    //   results.splice(index, 1);
-	    //   this.setState({ results: results })
-	    // }
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -21817,7 +21809,7 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	var _react = __webpack_require__(1);
 
@@ -21826,6 +21818,10 @@
 	var _axios = __webpack_require__(182);
 
 	var _axios2 = _interopRequireDefault(_axios);
+
+	var _nyt_api_key = __webpack_require__(212);
+
+	var _nyt_api_key2 = _interopRequireDefault(_nyt_api_key);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21846,7 +21842,7 @@
 
 	    var query = {
 	      params: {
-	        api_key: '611c17e5bafd43e280f1618d70703548',
+	        api_key: process.env.NYT_API_KEY || _nyt_api_key2.default,
 	        q: this.state.search_term
 	      }
 	    };
@@ -21942,6 +21938,7 @@
 	    );
 	  }
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
 /* 182 */
@@ -23388,13 +23385,19 @@
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
 	  getInitialState: function getInitialState() {
-	    return { deleted: '[]' };
+	    return { articles: [], deleted: [] };
 	  },
 	  onDelete: function onDelete(index) {
 	    this.setState({ deleted: this.state.deleted.concat([index]) });
 	  },
 	  render: function render() {
 	    var _this = this;
+
+	    // Reset deleted to empty array on new search
+	    if (this.state.articles !== this.props.articles) {
+	      this.state.articles = this.props.articles;
+	      this.state.deleted = [];
+	    }
 
 	    return _react2.default.createElement(
 	      'div',
@@ -23622,6 +23625,15 @@
 	    );
 	  }
 	});
+
+/***/ },
+/* 211 */,
+/* 212 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = "611c17e5bafd43e280f1618d70703548";
 
 /***/ }
 /******/ ]);

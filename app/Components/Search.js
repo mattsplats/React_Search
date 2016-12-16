@@ -3,6 +3,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import api_key from './nyt_api_key.js'
+
 module.exports = React.createClass({
   getInitialState() {
     return { search_term: '', begin_date: '', end_date: '' }
@@ -17,7 +19,7 @@ module.exports = React.createClass({
 
     const query = {
       params: {
-        api_key: '611c17e5bafd43e280f1618d70703548',
+        api_key: process.env.NYT_API_KEY || api_key,
         q: this.state.search_term
       }
     }
