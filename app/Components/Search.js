@@ -1,4 +1,7 @@
+'use strict';
+
 import React from 'react'
+import axios from 'axios'
 
 module.exports = React.createClass({
   getInitialState() {
@@ -6,19 +9,29 @@ module.exports = React.createClass({
   },
 
   handleChange(event) {
-    const newState = {};
-    newState[event.target.id] = event.target.value;
-    this.setState(newState);
+    this.setState({ [event.target.id]: event.target.value });
+  },
+
+  handleSubmit(event) {
+    event.preventDefault();
+    
+    axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
+      params: {
+        api_key: '',
+        q: this.state.search_term
+      }
+    }).then(response => {
+      this.props.setResults(response.data.response.docs);
+      this.setState({ search_term: '' });
+    })
   },
 
   render() {
     return (
       <div className="container">
-        <div className="orange">
-          <h2 className="header center white-text">Search</h2>
-        </div>
+        <h3 className="header center pad-top-bot-med no-margin-bot orange white-text">Search</h3>
         <div className="row">
-          <form className="col s12">
+          <form className="col s12" autoComplete="off" onSubmit={this.handleSubmit}>
 
             <div className="input-field">
               <input

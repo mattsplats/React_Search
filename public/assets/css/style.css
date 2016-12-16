@@ -1,39 +1,22 @@
 body {
 	background: url(/assets/img/fba7da61.png);
 	font-family: 'Lora', serif;
-	font-size: 150%;
-}
-
-body, h1, h2 {
-	font-weight: 600;
-}
-
-select {
-	border-radius: 4px; 
-	border: 1px solid #AAA;
-}
-
-.jumbotron {
-	background-color: white;
-}
-
-.list-group-item {
-	padding: 5px;
-}
-
-.form-control {
 	font-size: 100%;
 }
 
-#done {
-	color: lightgrey;
+body, h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
 }
 
 /* Custom classes */
-.min-height-200 {
-	min-height: 200px;
+.pad-top-bot-sm {
+	padding: 6px 0;
 }
 
-.min-height-400 {
-	min-height: 400px;
+.pad-top-bot-med {
+	padding: 10px 0;
+}
+
+.no-margin-bot {
+	margin-bottom: 0;
 }

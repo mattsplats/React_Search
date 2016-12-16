@@ -1,20 +1,18 @@
+'use strict';
+
 import React    from 'react'
 import ReactDOM from 'react-dom'
 
-import Header from './Components/Header'
-import Search from './Components/Search'
-import Results from './Components/Results'
-import Saved from './Components/Saved'
-import Footer from './Components/Footer'
+import Header   from './components/Header'
+import Content  from './components/Content'
+import Footer   from './components/Footer'
 
 // Render Main Component
 ReactDOM.render(
   <div className='main-container'>
     
     <Header />
-    <Search />
-    <Results />
-    <Saved />
+    <Content />
     <Footer />
 
   </div>,

@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react'
 
 import FoundArticle from './FoundArticle'
@@ -7,14 +9,12 @@ module.exports = React.createClass({
     return (
       <div className="container">
         <div className="section">
-          <div className="orange">
-            <h2 className="header center white-text">Results</h2>
-          </div>
+          <h3 className="header center pad-top-bot-med orange white-text">Results</h3>
           <div className="row">
             <div className="col s12">
-              <FoundArticle />
-              <FoundArticle />
-              <FoundArticle />
+              {this.props.articles.map(article =>
+                <FoundArticle key={article.web_url} article={article} setSaved={this.props.setSaved} />
+              )}
               <div className="divider"></div>
             </div>
           </div>
