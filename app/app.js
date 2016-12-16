@@ -13,7 +13,6 @@ ReactDOM.render(
     
     <Header />
     <Content />
-    <Footer />
 
   </div>,
   document.getElementById('app')

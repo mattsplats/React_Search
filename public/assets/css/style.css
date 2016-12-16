@@ -1,22 +1,35 @@
+main {
+  flex: 1 0 auto;
+}
+
 body {
-	background: url(/assets/img/fba7da61.png);
-	font-family: 'Lora', serif;
-	font-size: 100%;
+  /* Materialize sticky footer */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  background: url(/assets/img/fba7da61.png);
+  font-family: 'Lora', serif;
+  font-size: 100%;
 }
 
 body, h1, h2, h3, h4, h5, h6 {
-	font-weight: 600;
+  font-weight: 600;
+}
+
+footer {
+  position: relative;
 }
 
 /* Custom classes */
 .pad-top-bot-sm {
-	padding: 6px 0;
+  padding: 6px 0;
 }
 
 .pad-top-bot-med {
-	padding: 10px 0;
+  padding: 10px 0;
 }
 
 .no-margin-bot {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }

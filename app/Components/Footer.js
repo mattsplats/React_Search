@@ -3,9 +3,13 @@
 import React from 'react'
 
 module.exports = React.createClass({
+  getInitialState() {
+    return { window_height: $(window).height() }
+  },
+  
   render() {
     return (
-      <footer className="page-footer light-blue lighten-1" style={{ paddingTop: 0 }} >
+      <footer className="page-footer light-blue lighten-1">
         <div className="footer-copyright">
           <div className="container">
             <div className="right">

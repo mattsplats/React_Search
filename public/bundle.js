@@ -73,8 +73,7 @@
 	  'div',
 	  { className: 'main-container' },
 	  _react2.default.createElement(_Header2.default, null),
-	  _react2.default.createElement(_Content2.default, null),
-	  _react2.default.createElement(_Footer2.default, null)
+	  _react2.default.createElement(_Content2.default, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -21542,15 +21541,19 @@
 	  displayName: 'exports',
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'nav',
-	      { className: 'light-blue lighten-1', role: 'navigation' },
+	      'header',
+	      null,
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'nav-wrapper container' },
+	        'nav',
+	        { className: 'light-blue lighten-1', role: 'navigation' },
 	        _react2.default.createElement(
-	          'a',
-	          { id: 'logo-container', href: '#', className: 'brand-logo' },
-	          'NYT Article Search'
+	          'div',
+	          { className: 'nav-wrapper container' },
+	          _react2.default.createElement(
+	            'a',
+	            { id: 'logo-container', href: '#', className: 'brand-logo' },
+	            'NYT Article Search'
+	          )
 	        )
 	      )
 	    );
@@ -21628,10 +21631,13 @@
 
 	module.exports = _react2.default.createClass({
 	  displayName: 'exports',
+	  getInitialState: function getInitialState() {
+	    return { window_height: $(window).height() };
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'footer',
-	      { className: 'page-footer light-blue lighten-1', style: { paddingTop: 0 } },
+	      { className: 'page-footer light-blue lighten-1' },
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'footer-copyright' },
