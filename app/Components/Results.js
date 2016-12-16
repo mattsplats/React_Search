@@ -23,7 +23,7 @@ module.exports = React.createClass({
     return (
       <div className="container">
         <div className="section">
-          <h3 className="header center pad-top-bot-med orange white-text">Results</h3>
+          <h3 className="header center pad-top-bot-med grey white-text">Results</h3>
           <div className="row">
             <div className="col s12">
               {this.props.articles

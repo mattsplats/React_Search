@@ -21550,42 +21550,7 @@
 	        _react2.default.createElement(
 	          'a',
 	          { id: 'logo-container', href: '#', className: 'brand-logo' },
-	          'Logo'
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'right hide-on-med-and-down' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Navbar Link'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { id: 'nav-mobile', className: 'side-nav' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Navbar Link'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'a',
-	          { href: '#', 'data-activates': 'nav-mobile', className: 'button-collapse' },
-	          _react2.default.createElement(
-	            'i',
-	            { className: 'material-icons' },
-	            'menu'
-	          )
+	          'NYT Article Search'
 	        )
 	      )
 	    );
@@ -21666,138 +21631,22 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'footer',
-	      { className: 'page-footer orange' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col l6 s12' },
-	            _react2.default.createElement(
-	              'h5',
-	              { className: 'white-text' },
-	              'Company Bio'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              { className: 'grey-text text-lighten-4' },
-	              'We are a team of college students working on this project like it\'s our full time job. Any amount would help support and continue development on this project and is greatly appreciated.'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col l3 s12' },
-	            _react2.default.createElement(
-	              'h5',
-	              { className: 'white-text' },
-	              'Settings'
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              null,
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 1'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 2'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 3'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 4'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col l3 s12' },
-	            _react2.default.createElement(
-	              'h5',
-	              { className: 'white-text' },
-	              'Connect'
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              null,
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 1'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 2'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 3'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { className: 'white-text', href: '#!' },
-	                  'Link 4'
-	                )
-	              )
-	            )
-	          )
-	        )
-	      ),
+	      { className: 'page-footer light-blue lighten-1', style: { paddingTop: 0 } },
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'footer-copyright' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
-	          'Made by ',
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'orange-text text-lighten-3', href: 'http://materializecss.com' },
-	            'Materialize'
+	            'div',
+	            { className: 'right' },
+	            'Made by ',
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'grey-text text-lighten-2', href: 'http://materializecss.com' },
+	              'Materialize'
+	            )
 	          )
 	        )
 	      )
@@ -21819,10 +21668,6 @@
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _nyt_api_key = __webpack_require__(212);
-
-	var _nyt_api_key2 = _interopRequireDefault(_nyt_api_key);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -21842,7 +21687,7 @@
 
 	    var query = {
 	      params: {
-	        api_key: process.env.NYT_API_KEY || _nyt_api_key2.default,
+	        api_key: process.env.NYT_API_KEY || __webpack_require__(212),
 	        q: this.state.search_term
 	      }
 	    };
@@ -21861,7 +21706,7 @@
 	      { className: 'container' },
 	      _react2.default.createElement(
 	        'h3',
-	        { className: 'header center pad-top-bot-med no-margin-bot orange white-text' },
+	        { className: 'header center pad-top-bot-med no-margin-bot grey white-text' },
 	        'Search'
 	      ),
 	      _react2.default.createElement(
@@ -23407,7 +23252,7 @@
 	        { className: 'section' },
 	        _react2.default.createElement(
 	          'h3',
-	          { className: 'header center pad-top-bot-med orange white-text' },
+	          { className: 'header center pad-top-bot-med grey white-text' },
 	          'Results'
 	        ),
 	        _react2.default.createElement(
@@ -23538,7 +23383,7 @@
 	        { className: 'section' },
 	        _react2.default.createElement(
 	          'h3',
-	          { className: 'header center pad-top-bot-med orange white-text' },
+	          { className: 'header center pad-top-bot-med grey white-text' },
 	          'Saved Articles'
 	        ),
 	        _react2.default.createElement(

@@ -3,8 +3,6 @@
 import React from 'react'
 import axios from 'axios'
 
-import api_key from './nyt_api_key.js'
-
 module.exports = React.createClass({
   getInitialState() {
     return { search_term: '', begin_date: '', end_date: '' }
@@ -19,7 +17,7 @@ module.exports = React.createClass({
 
     const query = {
       params: {
-        api_key: process.env.NYT_API_KEY || api_key,
+        api_key: process.env.NYT_API_KEY || require('./nyt_api_key.js'),
         q: this.state.search_term
       }
     }
@@ -36,7 +34,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div className="container">
-        <h3 className="header center pad-top-bot-med no-margin-bot orange white-text">Search</h3>
+        <h3 className="header center pad-top-bot-med no-margin-bot grey white-text">Search</h3>
         <div className="row">
           <form className="col s12" autoComplete="off" onSubmit={this.handleSubmit}>
 
